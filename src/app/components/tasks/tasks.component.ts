@@ -24,4 +24,11 @@ export class TasksComponent implements OnInit {
     //filter out the deleted item from the UI
     this.taskService.deleteTask(task).subscribe(() => {this.tasks = this.tasks.filter(t => t.id !== task.id)});
   }
+
+  toggleReminder(task: Task): void {
+    //alter UI to reflect changed reminder status
+    task.reminder = !task.reminder;
+    //send change to service
+    this.taskService.toggleReminder(task).subscribe();
+  }
 }
