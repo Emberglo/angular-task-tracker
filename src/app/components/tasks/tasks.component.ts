@@ -1,0 +1,22 @@
+import { OnInit, Component } from '@angular/core';
+// import task interface/model
+import { Task } from '../../Task';
+//import service method
+import { TaskService } from '../../services/task.service';
+
+@Component({
+  selector: 'app-tasks',
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.css']
+})
+export class TasksComponent implements OnInit {
+  // assign list of tasks as a property of component
+  tasks: Task[] = [];
+
+  constructor(private taskService: TaskService) {}
+
+  ngOnInit(): void {
+    //subscribe to the observable created in task service
+    this.taskService.getTasks().subscribe((tasks) => this.tasks = tasks);
+  }
+}
