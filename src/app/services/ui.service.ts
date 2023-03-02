@@ -15,4 +15,9 @@ export class UiService {
     this.showAddTask = !this.showAddTask;
     this.subject.next(this.showAddTask);
   }
+
+  //whenever we want to do something when the add button is clicked we subscribe to onToggle to watch for it
+  onToggle(): Observable<any> {
+    return this.subject.asObservable();
+  }
 }
